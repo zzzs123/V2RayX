@@ -648,6 +648,46 @@ static AppDelegate *appDelegate;
     [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[[NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/Library/Application Support/V2RayX/pac/%@",NSHomeDirectory(), selectedPacFileName]]]];
 }
 
+NSString * const gh_gfwlist = @"https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt";
+NSString * const gl_gfwlist = @"https://gitlab.com/gfwlist/gfwlist/raw/master/gfwlist.txt";
+NSString * const gfwlist = @"https://raw.githubusercontent.com/petronny/gfwlist2pac/master/gfwlist.pac";
+
+- (IBAction)getGfwlist:(NSMenuItem *)sender {
+    NSURL *url = [NSURL URLWithString: gfwlist];
+    NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        @try {
+            NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            NSString *path = [NSString stringWithFormat:@"%@/Library/Application Support/V2RayX/pac/%@", NSHomeDirectory(), @"gfwlist.pac"];
+
+            NSError *gfwError = nil;
+
+            [string writeToFile: path atomically:YES encoding: NSUTF8StringEncoding error: &gfwError];
+            
+//            if (gfwError == nil) {
+//                [self updatePacMenuList];
+//                NSUserNotification *notification = [[NSUserNotification alloc] init];
+//                notification.title = @"V2RayX";
+//                if (error) {
+//                    notification.subtitle = @"get gfwlist failed";
+//                }else{
+//                    notification.subtitle = @"get gfwlist successful, please select 'PAC Mode'-'Edit pac file', change the .pac to .js";
+//                    [self updatePacMenuList];
+//                }
+//                [[NSUserNotificationCenter defaultUserNotificationCenter]  deliverNotification: notification];
+//            }
+        } @catch (NSException *exception) {
+//            NSUserNotification *notification = [[NSUserNotification alloc] init];
+//            notification.title = @"V2RayX";
+//            notification.subtitle = @"get gfwlist failed";
+//            [[NSUserNotificationCenter defaultUserNotificationCenter]  deliverNotification: notification];
+        } @finally {
+            
+        }
+    }
+                                  ];
+    [task resume];
+}
+
 - (IBAction)resetPac:(id)sender {
     NSAlert *resetAlert = [[NSAlert alloc] init];
     [resetAlert setMessageText:@"The pac file will be reset to the original one coming with V2RayX. Are you sure to proceed?"];

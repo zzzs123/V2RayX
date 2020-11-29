@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -753,6 +753,12 @@
                         <action selector="copyExportCmd:" target="Voe-Tx-rLC" id="OMz-Lv-Wmr"/>
                     </connections>
                 </menuItem>
+                <menuItem title="Get gfwlist" id="g3f-IV-bRn">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="getGfwlist:" target="Voe-Tx-rLC" id="sGT-YJ-Qm5"/>
+                    </connections>
+                </menuItem>
                 <menuItem title="Reset pac file" id="oGZ-uP-dny">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
@@ -792,7 +798,7 @@
                     </connections>
                 </menuItem>
             </items>
-            <point key="canvasLocation" x="-152" y="-193"/>
+            <point key="canvasLocation" x="-152" y="-193.5"/>
         </menu>
         <menuItem title="Edit pac file" id="3NY-51-bgh">
             <modifierMask key="keyEquivalentModifierMask"/>
